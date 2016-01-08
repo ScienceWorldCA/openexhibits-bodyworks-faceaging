@@ -1,0 +1,22 @@
+﻿<config Screentimeout="120" mousehide="false" fullscreen="true" mirrorwebcam="true" faceguides="false" dimcamerabackground="false">
+	<intro imagedirectory="assets/images/intro/" xmlpath="xml/intro_images.xml" maximumsequences="8" imagesequencetransitiontiming="1" imagesequencedelay="1" endcolormatrix="0.309,0.609,0.082,0.2,0,0.309,0.609,0.082,0.1,0,0.309,0.609,0.082,0.1,0,0,0,0,1,0"></intro>
+	<demographics ></demographics>
+	<aprilagefixedparams apilocation="localhost:8080" obesity=".4" smoking=".4" sun=".4"></aprilagefixedparams >
+	<loadingslides imagedirectory="assets/images/loadslides/" timing="6" fadetiming="1">
+		<image>loadslide01.jpg</image>
+		<image>loadslide02.jpg</image>
+		<image>loadslide03.jpg</image>
+		<image>loadslide04.jpg</image>
+		<image>loadslide05.jpg</image>
+	</loadingslides>
+	<infopoints>
+		<info x="383" y="211" title="Hair">When we get older our hair thins and goes grey. Why? &lt;br/&gt;&lt;br/&gt;Special cells called melanocytes found in the hair follicle produce hair colour by incorporating pigment into the growing hair fibres. &lt;br/&gt;&lt;br/&gt;At the end of each hair cycle, some pigment-producing melanocytes become damaged and die. &lt;br/&gt;&lt;br/&gt;When the reservoir of melanocytes is exhausted, pigment production stops and the hair turns grey.</info> 
+		<info x="390" y="275" title="Skin">When we get older our skin wrinkles, becomes darker, thinner, and develops spots. &lt;br/&gt;&lt;br/&gt;Wrinkles begin at a number of places on your face; usually at areas you move the most, like the far corners of your eyes (crow’s feet) and on your forehead, just above the brow. &lt;br/&gt;&lt;br/&gt;For many people, the next area of wrinkles is at the sides of the mouth, leaving deep crevices called laugh lines.</info>
+		<info x="350" y="525" title="Nose and Ears">When we get older our ears and nose continue to grow and get longer as we age because they are made of cartilage, a flexible connective tissue which continues to grow until we die. &lt;br/&gt;&lt;br/&gt;Cartilage also becomes thinner with age, causing the ears stretch down and the tip of the nose lengthens and droops. &lt;br/&gt;&lt;br/&gt;In many men, forests of hair sprout from their ears, nose, and back.</info> 
+		<info x="430" y="580" title="We shrink!">Before we die we’ll have shrunk in height by an average of 4.9 cm for women and 2.9 cm for men. &lt;br/&gt;&lt;br/&gt;Did someone let the air out of our tires? What’s the reason for this loss in stature? &lt;br/&gt;&lt;br/&gt;One big reason is water loss. &lt;br/&gt;&lt;br/&gt;Between each vertebra in your back are jelly-like disks that help absorb any shock your backbone receives. &lt;br/&gt;&lt;br/&gt;As you get older, the disks lose water and you lose height.</info> 
+		<info x="395" y="630" title="Why wrinkles?">The top layer, the epidermis, thins. After our bodies peak in our 20’s, our epidermis starts to lose cells at a rate of 10% per decade. &lt;br/&gt;&lt;br/&gt;Think of the skin’s bottom layer, the dermis, as an elastic band. Every time we smile or frown or make some expression our dermis gets a good workout. Well after decades of being stretched and yanked, the dermis starts to lose its elasticity.  &lt;br/&gt;&lt;br/&gt;Ultraviolet sunrays can also cause the dermis to loose elasticity. The more unprotected sun someone receives, the more likely they will wrinkle at an earlier age and have deeper wrinkles.</info> 
+
+	</infopoints>
+	<social emailscript="http://www.emailtestscript.com/somescripthere.php"></social>
+	<dts jsonconfiglocation="xml/DTSsetup.json"></dts>
+</config>

@@ -1,4 +1,4 @@
-package com.zarinmedia
+﻿package com.zarinmedia
 {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -142,8 +142,25 @@ package com.zarinmedia
 			handleCircle.removeEventListener(MouseEvent.MOUSE_DOWN, onMDown);
 			FaceAgingMainTimeline.theTimeline.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onMUp);
 			FaceAgingMainTimeline.theTimeline.removeEventListener(MouseEvent.MOUSE_UP, onMUp);
-			removeChild(maskBlueRail);
-			removeChild(sliderClip)
+			
+			if(maskBlueRail.stage){
+				
+				try{
+				removeChild(maskBlueRail);
+				} catch(e){
+					
+				}
+			}
+			
+			if(sliderClip.stage){
+				try{
+				removeChild(sliderClip);
+				}
+				catch(e){
+					
+				
+				}
+			}
 		}
 	
 	}

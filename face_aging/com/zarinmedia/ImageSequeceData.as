@@ -1,4 +1,4 @@
-package com.zarinmedia {
+﻿package com.zarinmedia {
 	import com.adobe.air.filesystem.events.FileMonitorEvent;
 	import flash.events.Event;
 	import flash.filesystem.File;
@@ -6,6 +6,8 @@ package com.zarinmedia {
 	import flash.events.EventDispatcher;
 	import flash.filesystem.FileStream;
 	import flash.filesystem.FileMode;
+	import flash.utils.getTimer;
+
 	/**
 	 * ...
 	 * @author Zoubin Zarin
@@ -25,6 +27,10 @@ package com.zarinmedia {
 		internal function numberOfImageSequences():uint {
 			return uint (x.*.length());
 		}
+		
+		
+
+
 		internal function getSequenceFilenames(idx:uint):Array {
 			var returnArray:Array = new Array();
 			for (var i:int = 0; i < x.*[idx].*.length() ; i++) {
@@ -43,13 +49,16 @@ package com.zarinmedia {
 			securityBypass = securityBypass.resolvePath(saveDirectory + timestamp + "-" + origAge+".jpg");
 			
 			
+			
 			var newOrigPhotoFile:File = new File(securityBypass.nativePath);
 			trace( "newOrigPhotoFile : " + newOrigPhotoFile.nativePath );
 			
+			
+			
 			origPhotoFile.copyToAsync(newOrigPhotoFile, true); // copy the current image
 			
-			var delOrig:File = new File(origPhotoFile.nativePath) // have to do this funky thing because it wont let me call delete on a file object that I have executed stuff on already
-			delOrig.deleteFileAsync();// then delete it from old location
+			//var delOrig:File = new File(origPhotoFile.nativePath) // have to do this funky thing because it wont let me call delete on a file object that I have executed stuff on already
+			//delOrig.deleteFileAsync();// then delete it from old location
 			FaceAgingMainTimeline.theTimeline.photoCaptureFilePath = newOrigPhotoFile;
 			
 			

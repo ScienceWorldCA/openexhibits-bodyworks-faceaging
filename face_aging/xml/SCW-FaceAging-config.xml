@@ -1,4 +1,4 @@
-﻿<config Screentimeout="120" mousehide="false" fullscreen="true" mirrorwebcam="true" faceguides="false" dimcamerabackground="false">
+﻿<config Screentimeout="120" mousehide="false" fullscreen="true" mirrorwebcam="true" faceguides="true" dimcamerabackground="false" maxAprilAttempts="45">
 	<intro imagedirectory="assets/images/intro/" xmlpath="xml/intro_images.xml" maximumsequences="8" imagesequencetransitiontiming="1" imagesequencedelay="1" endcolormatrix="0.309,0.609,0.082,0.2,0,0.309,0.609,0.082,0.1,0,0.309,0.609,0.082,0.1,0,0,0,0,1,0"></intro>
 	<demographics ></demographics>
 	<aprilagefixedparams apilocation="localhost:8080" obesity=".4" smoking=".4" sun=".4"></aprilagefixedparams >

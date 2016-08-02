@@ -1,4 +1,4 @@
-package com.zarinmedia {
+﻿package com.zarinmedia {
 	import com.greensock.motionPaths.MotionPath;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -230,13 +230,33 @@ package com.zarinmedia {
 		
 		private function setAgePhoto(idx:int):void {
 			
-			for (var i:int = 0; i < ageSequenceImagesArray.length; i++) {
-				Loader(ageSequenceImagesArray[i]).alpha = 0;
-			}
-			Loader(ageSequenceImagesArray[idx]).alpha = 1;
 			
-			TextField(yearLabelRight.getChildByName("ageText")).text = String(ageSeqArr[idx]);	 // set the age and year labels for the aging photos .	
-			TextField(yearLabelRight.getChildByName("yearText")).text = String(year+(ageSeqArr[idx] - agenow));
+			trace("REPORT IDX: " + String(idx));
+			
+			trace("REPORT ageSequenceImagesArray Length: " + String(ageSequenceImagesArray.length));
+			
+			
+			if(ageSequenceImagesArray.length > 0){
+				
+				for (var i:int = 0; i < ageSequenceImagesArray.length; i++) {
+					
+					trace("REPORT ageSequenceImagesArray ITEM" +i + " " + ageSequenceImagesArray[i]);
+					
+				
+					Loader(ageSequenceImagesArray[i]).alpha = 0;
+				}
+				
+				trace("REPORT ageSequenceImagesArray SELECTED ITEM" + ageSequenceImagesArray[idx]);
+				
+				Loader(ageSequenceImagesArray[idx]).alpha = 1;
+				
+				TextField(yearLabelRight.getChildByName("ageText")).text = String(ageSeqArr[idx]);	 // set the age and year labels for the aging photos .	
+				TextField(yearLabelRight.getChildByName("yearText")).text = String(year+(ageSeqArr[idx] - agenow));
+				
+			} else {
+				
+				trace("WHITE SCREEN");
+			}
 			
 		}
 		
@@ -244,7 +264,10 @@ package com.zarinmedia {
 			// the slider UI just told us the age picture should be changed
 			SliderUI(e.currentTarget).currentIndex
 			trace( "SliderUI(e.currentTarget).currentIndex :   CHANGE the age photo to index=" + SliderUI(e.currentTarget).currentIndex );
-			setAgePhoto(SliderUI(e.currentTarget).currentIndex);
+			
+			if(ageSequenceImagesArray.length > 0){
+				setAgePhoto(SliderUI(e.currentTarget).currentIndex);
+			}
 		}
 		internal function kill():void {
 			// close things down
@@ -253,10 +276,15 @@ package com.zarinmedia {
 			FaceAgingMainTimeline.theTimeline.removeEventListener(MouseEvent.RELEASE_OUTSIDE , onMUp);
 			FaceAgingMainTimeline.theTimeline.removeEventListener(MouseEvent.MOUSE_UP , onMUp);
 			FaceAgingMainTimeline.theTimeline.removeEventListener(MouseEvent.MOUSE_MOVE , onMMove);
-			sUI.kill();
+			//sUI.kill();
 			// try and remove the movieclips
 			for (var i : int = numChildren-1 ; i >= 0 ; i--){
-					removeChildAt(i);
+				
+				try{
+					//removeChildAt(i);
+				} catch(e){
+					
+				}
 			}
 
 		}

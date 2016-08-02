@@ -1,4 +1,4 @@
-package com.zarinmedia {
+﻿package com.zarinmedia {
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.*;
 	import com.greensock.easing.*;
@@ -13,6 +13,9 @@ package com.zarinmedia {
 	import flash.utils.Timer;
 	import flash.filters.ColorMatrixFilter;
 	import flash.display.LoaderInfo;
+	import flash.display.DisplayObject;
+	import flash.system.System;
+
 	//
 	/**
 	 * ...
@@ -39,11 +42,24 @@ package com.zarinmedia {
 		internal var imageSequenceIndexPlayingNow:int;
 		private var lastImageHolder:Loader;
 		
+		private var l1:Loader = new Loader();
+		private var l2:Loader = new Loader();
+		private var l3:Loader = new Loader();
+		private var l4:Loader = new Loader();
+		private var l5:Loader = new Loader();
+		private var l6:Loader = new Loader();
+		
 		
 		private var arrListeners:Array = [];
 		
 		
-		public function ImageSequence(index:uint , wdth:Number , Hght:Number ):void {
+		public function ImageSequence():void {
+			
+			
+
+		}
+		
+		public function initialize(index:uint , wdth:Number , Hght:Number){
 			myHeight = Hght;
 			myWidth = wdth;
 			idx = index;
@@ -74,7 +90,6 @@ package com.zarinmedia {
 			
 			imageArray = new Array(); // the array that holds all the images in the sequence
 			
-
 		}
 		
 		override public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
@@ -91,7 +106,7 @@ package com.zarinmedia {
 					 this.removeEventListener(arrListeners[i].type, arrListeners[i].listener);
 				  }
 			   }
-			   arrListeners = null
+			   arrListeners = []
 		}
 		internal function loadSequence( imageSequenceIndexToPlay:int , playAfterLoad:Boolean = true ):void {
 			if (imageArray.length != 0 ) {// if this is not the first time that this fucntion is playing we need to clean house a bit..
@@ -137,19 +152,43 @@ package com.zarinmedia {
 			playhead = -1; // means we have not started playing yet;
 			// start loading the files for this sequnce
 			filenames = FaceAgingMainTimeline.imageSequenceData.getSequenceFilenames(imageSequenceIndexPlayingNow);
+			
+			
 			for (var i:int = 0; i < filenames.length ; i++) {
-				var tempLoader:Loader = new Loader();
-				tempLoader.load(new URLRequest(imagedirectory+filenames[i]));
-				containorClip.addChild(tempLoader); // right away we can add these images to the containor
-				imageArray.push(tempLoader); // keep track of them
-				tempLoader.alpha = 0; // turn the alpha off so that they are not on at the same time
-				tempLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadFile); // add event listiners on these so that we know when all the images are loaded, we need this because we can only get dimention of loaded images after they are loaded
+				
+				
+					
+				
+					
+				
+				
+					this["l"+(i+1)].unload(); 
+					// Remove Listener
+					this["l"+(i+1)].contentLoaderInfo.removeEventListener(Event.COMPLETE, onLoadFile);
+					// Set to Null
+					
+					this["l"+(i+1)] = null;
+					
+					this["l"+(i+1)] = new Loader(); 
+				
+				
+				
+				this["l"+(i+1)].load(new URLRequest(imagedirectory+filenames[i]));
+				containorClip.addChild(this["l"+(i+1)]); // right away we can add these images to the containor
+				imageArray.push(this["l"+(i+1)]); // keep track of them
+				this["l"+(i+1)].alpha = 0; // turn the alpha off so that they are not on at the same time
+				this["l"+(i+1)].contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadFile); // add event listiners on these so that we know when all the images are loaded, we need this because we can only get dimention of loaded images after they are loaded
 			}
+			
 			
 			
 		}
 		
 		private function onLoadFile(e:Event):void {
+			
+			
+			//MH Remove Loader junk
+			
 			
 			//LoaderInfo(e.target).removeEventListener(Event.COMPLETE, onLoadFile);// cleanup after yourself
 			e.target.removeEventListener(Event.COMPLETE, onLoadFile)

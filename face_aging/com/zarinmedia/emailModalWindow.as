@@ -21,6 +21,9 @@
 	import flash.events.IOErrorEvent;
 	import flash.utils.Timer;
 	import flash.net.URLRequestHeader;
+	import flash.filesystem.FileStream;
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
 
 	public class emailModalWindow extends MovieClip {
 		
@@ -48,7 +51,7 @@
 			// constructor code
 			compToggle = MovieClip(getChildByName("comparisonToggle"));
 			addEventListener(MouseEvent.CLICK , onClickedDown );
-			characters = new Array("q","u","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","@","z","x","c","v","b","n","m",".","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","0","1","2","3","4","5","6","7","8","9","!","#","$","%","&","'","*","+","-","/","=","?","^","_","`","{","|","}","~",".com"," ");
+			characters = new Array("q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","@","z","x","c","v","b","n","m",".","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","0","1","2","3","4","5","6","7","8","9","!","#","$","%","&","'","*","+","-","/","=","?","^","_","`","{","|","}","~",".com"," ");
 			numKeyboard = MovieClip(getChildByName("numberToggle"));
 			uppercaseKeyboard = MovieClip(getChildByName("shiftToggle"));
 			nameClip = MovieClip(getChildByName("nameclip"));
@@ -67,6 +70,47 @@
 			ldcir.scaleY = .5;
 			
 		}
+		
+		
+		
+		//MH Feb.09.2016 Added
+		public function writeEmail(user_name,user_email_address){
+			
+			var fs:FileStream = new FileStream();
+			trace(File.applicationStorageDirectory.nativePath)
+			
+			var update; 
+			
+			try{
+				// try open
+				fs.open(new File(File.applicationStorageDirectory.nativePath).resolvePath("email.csv"),FileMode.READ);
+				fs.close()
+				
+				// append
+				fs.open(new File(File.applicationStorageDirectory.nativePath).resolvePath("email.csv"),FileMode.APPEND);
+				update = user_name + "," + user_email_address + "\n";
+				fs.writeUTFBytes(update);
+				fs.close()
+				
+				
+			} catch(e){
+				
+				
+				
+				trace(File.applicationStorageDirectory.nativePath)
+				fs.open(new File(File.applicationStorageDirectory.nativePath).resolvePath("email.csv"),FileMode.WRITE);
+				
+				
+				update = user_name + "," + user_email_address + "\n";
+				fs.writeUTFBytes(update);
+				fs.close()
+			
+			}
+			
+			
+			
+		}
+		
 		
 		private function onClickedDown(e:MouseEvent):void {
 
@@ -253,6 +297,11 @@
 					theEmailScriptURL += "&addtolist=" + escape(String(addToList)) ;
 					trace( "theEmailScriptURL : " + theEmailScriptURL );
 								
+			
+					if(addToList){
+						writeEmail(String(uname),String(emailText)); 
+					}
+					
 					var request:URLRequest = new URLRequest(theEmailScriptURL);
 
 					//var requestVars:URLVariables = new URLVariables();
@@ -310,8 +359,8 @@
 					TextField(emailClip.getChildByName("txt")).textColor = 0x666666
 				}else {
 				
-					emailClip.gotoAndStop(2);
-					TextField(emailClip.getChildByName("txt")).textColor = 0xffffff
+					//emailClip.gotoAndStop(2);
+					//TextField(emailClip.getChildByName("txt")).textColor = 0xffffff
 					
 				
 				}
@@ -320,6 +369,8 @@
 		internal function setEmailPhoto(origphotofilename:String, currentAge:int ,  agedphotofilename:String , ageTo:int):void {
 			comparisonImage = false;// rest the comp toggle...
 			compToggle.gotoAndStop(1);
+
+			
 			
 			if (contains(disableEverythingClip)) {
 				removeChild(disableEverythingClip);

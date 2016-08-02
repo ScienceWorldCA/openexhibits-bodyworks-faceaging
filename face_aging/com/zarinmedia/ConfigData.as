@@ -1,4 +1,4 @@
-package com.zarinmedia {
+﻿package com.zarinmedia {
 	import flash.geom.Point;
 	/**
 	 * ...
@@ -6,118 +6,124 @@ package com.zarinmedia {
 	 */
 	public class ConfigData {
 		// this class gets us the configuration data we need from the xml
-		public var x:XML;
-		public function ConfigData( theXML:XML) {
+		public var x: XML;
+		public function ConfigData(theXML: XML) {
 			x = theXML;
-			
+
 		}
-		
-		internal function getIntroXMLfilePath():String {
+
+		internal function getIntroXMLfilePath(): String {
 
 			return x.intro.@xmlpath;
 		}
-		
-		internal function getMouseHide():String {
+
+		internal function getMouseHide(): String {
 			return String(x.@mousehide);
 		}
-		
-	internal function getMirrorWebcam():String {
-		return String(x.@mirrorwebcam);
-	}
-		internal function getScreenTimeout():Number {
+
+		internal function getMirrorWebcam(): String {
+			return String(x.@mirrorwebcam);
+		}
+		internal function getScreenTimeout(): Number {
 			return Number(x.@Screentimeout);
 		}
-		internal function useFaceGuides():String {
+		internal function useFaceGuides(): String {
 			return String(x.@faceguides);
 		}
-		internal function dimCameraBackground():String {
+		internal function dimCameraBackground(): String {
 			return String(x.@dimcamerabackground);
 		}
-		internal function isAppFullScreen():String {
+		internal function isAppFullScreen(): String {
 			return String(x.@fullscreen);
 		}
-		internal function getIntroMaximum():int {
+		internal function getIntroMaximum(): int {
 			return x.intro.@maximumsequences;
 		}
-		internal function getIntroImageDirectory():String {
+		internal function getIntroImageDirectory(): String {
 			return x.intro.@imagedirectory;
 		}
-		internal function getIntrotransitionTime():Number {
+		internal function getIntrotransitionTime(): Number {
 			return Number(x.intro.@imagesequencetransitiontiming);
 		}
-		internal function getIntroDelay():Number {
-			
-			return Number(x.intro.@imagesequencedelay  );
+		internal function getIntroDelay(): Number {
+
+			return Number(x.intro.@imagesequencedelay);
 		}
-		internal function getIntroColorMatrix():String {
+		internal function getIntroColorMatrix(): String {
 			return x.intro.@endcolormatrix;
 		}
-		internal function getDefaultAge():int {
+		internal function getDefaultAge(): int {
 			return x.demographics.@defaultage;
 		}
-		internal function getAPILocation():String {
-			return  x.aprilagefixedparams.@apilocation;
+		internal function getAPILocation(): String {
+			return x.aprilagefixedparams.@apilocation;
 		}
-		internal function getAprilSmoking():Number {
+		internal function getAprilSmoking(): Number {
 			return x.aprilagefixedparams.@smoking;
 		}
-		internal function getAprilSun():Number {
+		internal function getAprilSun(): Number {
 			return x.aprilagefixedparams.@sun;
 		}
-		internal function getAprilObesity():int {
+		internal function getAprilObesity(): int {
 			return x.aprilagefixedparams.@obesity;
 		}
-		internal function getLoaderImageSlideFilenames():Array {
-			var returnArray:Array = new Array();
-			for (var i:int = 0; i < x.loadingslides.*.length() ; i++) {
-				returnArray.push( String(x.loadingslides.@imagedirectory) +  String(x.loadingslides.*[i]));
+		internal function getLoaderImageSlideFilenames(): Array {
+			var returnArray: Array = new Array();
+			for (var i: int = 0; i < x.loadingslides.*.length(); i++) {
+				returnArray.push(String(x.loadingslides.@imagedirectory) + String(x.loadingslides.*[i]));
 			}
 			return returnArray;
 		}
-		internal function getLoaderImageSlideTiming():int {
-				return int( x.loadingslides.@timing );
+		internal function getLoaderImageSlideTiming(): int {
+			return int(x.loadingslides.@timing);
 		}
-		
-		internal function getLoaderImageSliderFadeTiming():int {
-			return int( x.loadingslides.@fadetiming );
+
+		internal function getLoaderImageSliderFadeTiming(): int {
+			return int(x.loadingslides.@fadetiming);
 		}
-		internal function getNumberofInfoPoints():int {
+		internal function getNumberofInfoPoints(): int {
 			return x.infopoints.*.length()
 		}
-		internal function getInfoPointLocations():Array {
-			var rtnArr:Array = new Array();
-			var pt:Point;
-			for (var i:int = 0; i < getNumberofInfoPoints() ; i++) {
-				pt = new Point(Number(x.infopoints.*[i].@x ), Number(x.infopoints.*[i].@y));
+		internal function getInfoPointLocations(): Array {
+			var rtnArr: Array = new Array();
+			var pt: Point;
+			for (var i: int = 0; i < getNumberofInfoPoints(); i++) {
+				pt = new Point(Number(x.infopoints.*[i].@x), Number(x.infopoints.*[i].@y));
 				rtnArr.push(pt);
-				
+
 			}
 			return rtnArr;
 		}
-		
-		internal function getInfoPointTitles():Array {
-			var rtnArr:Array = new Array();
-			for (var i:int = 0; i < getNumberofInfoPoints() ; i++) {
-				rtnArr.push(String(x.infopoints.*[i].@title ));
-				
+
+		internal function getInfoPointTitles(): Array {
+			var rtnArr: Array = new Array();
+			for (var i: int = 0; i < getNumberofInfoPoints(); i++) {
+				rtnArr.push(String(x.infopoints.*[i].@title));
+
 			}
 			return rtnArr;
 		}
-		internal function getInfoPointText():Array {
-			var rtnArr:Array = new Array();
-			for (var i:int = 0; i < getNumberofInfoPoints() ; i++) {
-				rtnArr.push(String(x.infopoints.*[i] ));
-				
+		internal function getInfoPointText(): Array {
+			var rtnArr: Array = new Array();
+			for (var i: int = 0; i < getNumberofInfoPoints(); i++) {
+				rtnArr.push(String(x.infopoints.*[i]));
+
 			}
 			return rtnArr;
 		}
-		internal function getEmailScriptURL():String {
+		internal function getEmailScriptURL(): String {
 			return String(x.social.@emailscript);
 		}
-		
-		internal function getDTSconfigLocation():String {
-			return String( x.dts.@jsonconfiglocation )
+
+		internal function getDTSconfigLocation(): String {
+			return String(x.dts.@jsonconfiglocation)
 		}
+
+		//JL Feb.5.2016 Added
+		internal function getmaxAprilAttempts(): int {
+			return int(x.@maxAprilAttempts);
+		}
+		//
 
 	}
 
